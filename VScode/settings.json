@@ -1,0 +1,10 @@
+{
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "extensions.autoUpdate": false,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "editor.renderWhitespace": "boundary",
+    "window.zoomLevel": 2,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Monokai"
+}
