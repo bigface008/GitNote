@@ -1,0 +1,393 @@
+{
+  "add": {
+    "message": "Hinzufügen"
+  },
+  "add_domain_button": {
+    "message": "Domain hinzufügen"
+  },
+  "add_filter_button": {
+    "message": "Filter hinzufügen"
+  },
+  "add_filters_msg": {
+    "message": "Filter hinzufügen?"
+  },
+  "add_your_own_filters": {
+    "message": "Eigene Filter hinzufügen"
+  },
+  "apply_changes": {
+    "message": "Änderungen übernehmen"
+  },
+  "block_element": {
+    "message": "Element blockieren"
+  },
+  "cancel": {
+    "message": "Abbrechen"
+  },
+  "clickhide_instructions": {
+    "message": "Nachdem dieses Fenster geschlossen ist, klicken Sie ein Element auf der Seite an, welches Sie blockieren wollen."
+  },
+  "continue": {
+    "message": "Fortsetzen"
+  },
+  "description": {
+    "message": "Mit über 100 Millionen verwendeten Geräten, ist Adblock Plus der beliebteste Adblocker der Welt."
+  },
+  "disabled_for_site": {
+    "message": "Auf dieser Seite <strong>deaktiviert</strong>"
+  },
+  "disabled_for_these_domains": {
+    "message": "Adblock Plus wird für die unten aufgelisteten Domains deaktiviert. Sie können eine Domain über das Adblock Plus-Symbol in der Adressleiste hinzufügen oder Sie schreiben eine Domain in das Textfeld und klicken auf „Domain hinzufügen“."
+  },
+  "easy_create_filter": {
+    "message": "Element blockieren"
+  },
+  "edit_filters_raw": {
+    "message": "Liste als Text bearbeiten"
+  },
+  "enable_only_the": {
+    "message": "Aktivieren Sie nur die Filterlisten, die Sie brauchen. Zu viele Listen können die Leistung Ihres Browsers so stark einschränken, dass er nicht mehr reagiert."
+  },
+  "enabled_for_site": {
+    "message": "Auf dieser Seite <strong>aktiviert</strong>"
+  },
+  "filter_elemhideemulation_nodomain": {
+    "message": "Keine aktive Domain für den erweiterten Filter zum Ausblenden von Elementen angegeben"
+  },
+  "filter_invalid_domain": {
+    "message": "Ungültige (oder leere) Domäne angegeben"
+  },
+  "filter_invalid_regexp": {
+    "message": "Ungültiger regulärer Ausdruck"
+  },
+  "filter_lists": {
+    "message": "Filterlisten"
+  },
+  "filter_must_follow_syntax": {
+    "message": "Ihr Filter muss nach der <a>Adblock Plus Filterschreibweise</a> geschrieben werden."
+  },
+  "filter_unknown_option": {
+    "message": "Unbekannte Filteroption"
+  },
+  "filters_acceptableAds2_label": {
+    "message": "Einige nicht aufdringliche Werbung zulassen"
+  },
+  "filters_addSubscriptionAdd_label": {
+    "message": "Hinzufügen"
+  },
+  "filters_addSubscriptionOther_label": {
+    "message": "Anderes Abonnement hinzufügen"
+  },
+  "filters_addSubscription_label": {
+    "message": "Filterabonnement hinzufügen"
+  },
+  "filters_readMore_label": {
+    "message": "Mehr Information"
+  },
+  "filters_subscription_delete_label": {
+    "message": "Löschen"
+  },
+  "filters_subscription_enabled_label": {
+    "message": "Aktiviert"
+  },
+  "filters_subscription_lastDownload_checksumMismatch": {
+    "message": "Fehler, Prüfsumme ist falsch, möglicherweise ein Übertragungsfehler"
+  },
+  "filters_subscription_lastDownload_connectionError": {
+    "message": "Fehler, Download fehlgeschlagen"
+  },
+  "filters_subscription_lastDownload_inProgress": {
+    "message": "Wird heruntergeladen ..."
+  },
+  "filters_subscription_lastDownload_invalidData": {
+    "message": "Fehler, keine gültige Filterliste"
+  },
+  "filters_subscription_lastDownload_invalidURL": {
+    "message": "Fehler, ungültige Adresse"
+  },
+  "filters_viewList_label": {
+    "message": "Liste öffnen"
+  },
+  "firstRun_abbButtonSubtitle": {
+    "message": "Verfügbar für Android und iOS"
+  },
+  "firstRun_abbButtonTitle": {
+    "message": "Erhalten Sie hier Adblock Browser"
+  },
+  "firstRun_abbPromotionHeadline": {
+    "message": "Haben Sie ein Smartphone oder ein Tablet?"
+  },
+  "firstRun_acceptableAdsExplanation": {
+    "message": "Wir möchten Webseiten dazu ermutigen schlichte und unaufdringliche Werbung zu verwenden. Deshalb werden durch <a>strenge Richtlinien</a> akzeptable Werbeanzeigen bestimmt, welche unter den Standard-Einstellungen noch angezeigt werden. Wenn Sie jedoch alle Werbungen blockieren möchten, können Sie diese Einstellung in kurzer Zeit <a>deaktivieren</a>."
+  },
+  "firstRun_acceptableAdsHeadline": {
+    "message": "Lästige Werbung wird jetzt blockiert"
+  },
+  "firstRun_contributor_credits": {
+    "message": "Mitwirkende"
+  },
+  "firstRun_donate": {
+    "message": "Spenden"
+  },
+  "firstRun_donate_label": {
+    "message": "Unterstützen Sie unser Projekt"
+  },
+  "firstRun_filterlistsReinitializedWarning": {
+    "message": "Es scheint, als ob aufgrund eines Problems alle Filter entfernt wurden und wir keine Sicherung wiederherstellen konnten. Deshalb wurden alle Ihre Filter sowie Ihre Einstellungen für akzeptable Werbung zurückgesetzt. Überprüfen Sie bitte Ihre Filterliste und Ihre Einstellungen für akzeptable Werbung in den <a>Adblock Plus Optionen</a>."
+  },
+  "firstRun_share": {
+    "message": "Weiterempfehlen"
+  },
+  "firstRun_share_headline": {
+    "message": "<a>Bitte unterstützen Sie uns</a> dabei, das Internet zu einem besseren Ort zu machen"
+  },
+  "firstRun_title": {
+    "message": "Adblock Plus wurde installiert"
+  },
+  "found_a_bug": {
+    "message": "Sie haben einen Fehler gefunden oder wollen Adblock Plus in eine andere Sprache übersetzen? Bitte schreiben Sie uns <a>hier</a>."
+  },
+  "general": {
+    "message": "Allgemein"
+  },
+  "global_remove_subscription_warning": {
+    "message": "Sind Sie sicher, dass Sie dieses Abonnement entfernen möchten?"
+  },
+  "global_subscription_invalid_location": {
+    "message": "Die eingegebene Adresse ist weder eine gültige Web-Adresse, noch ein gültiger Dateiname."
+  },
+  "invalid_css_selector": {
+    "message": "$selector$ ist keine gültige CSS Auswahl",
+    "placeholders": {
+      "selector": {
+        "content": "$1"
+      }
+    }
+  },
+  "issueReporter_anonymousSubmission_label": {
+    "message": "Anonymer Beitrag"
+  },
+  "issueReporter_anonymousSubmission_warning": {
+    "message": "Es wird uns nicht möglich sein, sich für Nachfragen an Sie zu wenden, und wir werden Ihrem Bericht möglicherweise eine niedrigere Priorität beimessen."
+  },
+  "issueReporter_commentPage_heading": {
+    "message": "Kommentar eingeben"
+  },
+  "issueReporter_comment_description": {
+    "message": "Unten können Sie einen Kommentar eingeben, um uns zu helfen, das Problem zu verstehen. Das ist zwar optional, ist jedoch empfohlen, falls das Problem nicht offensichtlich ist. Sie können auch die Daten Ihres Berichts überprüfen, bevor sie gesendet werden."
+  },
+  "issueReporter_comment_label": {
+    "message": "Kommentar (optional):"
+  },
+  "issueReporter_comment_lengthWarning": {
+    "message": "Ihr Kommentar ist länger als 1000 Zeichen. Nur die ersten 1000 Zeichen werden gesendet."
+  },
+  "issueReporter_confirmationMessage": {
+    "message": "Ihr Bericht wurde gespeichert. Sie können Ihn unter der folgenden Adresse aufrufen:"
+  },
+  "issueReporter_dataCollector_description": {
+    "message": "Bitte warten Sie einige Augenblicke, während Adblock Plus die benötigten Daten sammelt."
+  },
+  "issueReporter_dataCollector_heading": {
+    "message": "Willkommen zum Fehlerberichts-Assistenten"
+  },
+  "issueReporter_doneButton_label": {
+    "message": "Fertigstellen"
+  },
+  "issueReporter_email_description": {
+    "message": "Wir empfehlen Ihnen, eine gültige E-Mail-Adresse einzugeben, damit wir Sie kontaktieren können, falls es Fragen zu Ihrem Bericht gibt. Es erlaubt uns, Ihre Beiträge zu erkennen und diesen höhere Prioritäten beizumessen."
+  },
+  "issueReporter_email_label": {
+    "message": "E-Mail:"
+  },
+  "issueReporter_errorMessage": {
+    "message": "Beim Senden des Berichts ist ein Fehler aufgetreten (Fehlercode \"?1?\"). Bitte stellen Sie sicher, dass Sie mit dem Internet verbunden sind, und versuchen Sie, den Bericht noch einmal zu senden. Falls das Problem bestehen bleibt, wenden Sie sich an das [link]Adblock Plus Forum[/link]."
+  },
+  "issueReporter_falseNegative_description": {
+    "message": "Wählen Sie diese Option, falls Werbung auf der Seite angezeigt wird, obwohl Adblock Plus aktiviert ist."
+  },
+  "issueReporter_falseNegative_label": {
+    "message": "Eine Werbeeinblendung wird von Adblock Plus nicht blockiert"
+  },
+  "issueReporter_falsePositive_description": {
+    "message": "Wählen Sie diese Option, falls auf der Seite wichtige Inhalte fehlen, die Seite falsch angezeigt wird oder nicht korrekt funktioniert. Sie können feststellen, ob Adblock Plus das Problem verursacht, indem Sie es vorübergehend deaktivieren."
+  },
+  "issueReporter_falsePositive_label": {
+    "message": "Adblock Plus blockiert zu viel"
+  },
+  "issueReporter_knownIssueMessage": {
+    "message": "Das Problem, das Sie berichtet haben, ist möglicherweise bereits bekannt. Zusätzliche Information:"
+  },
+  "issueReporter_page_title": {
+    "message": "Fehler melden"
+  },
+  "issueReporter_privacyPolicy": {
+    "message": "Datenschutzerklärung"
+  },
+  "issueReporter_sendButton_label": {
+    "message": "Bericht absenden"
+  },
+  "issueReporter_sendPage_heading": {
+    "message": "Bericht absenden"
+  },
+  "issueReporter_sending": {
+    "message": "Bitte warten Sie, während Adblock Plus Ihren Bericht sendet."
+  },
+  "issueReporter_showData_label": {
+    "message": "Berichtdaten anzeigen"
+  },
+  "issueReporter_typeSelector_description": {
+    "message": "Dieser Assistent wird Sie durch die nötigen Schritte zum Melden eines Adblock Plus-Fehlers leiten. Zuerst wählen Sie bitte die Art des Fehlers, den Sie auf dieser Seite beobachten:"
+  },
+  "issueReporter_typeSelector_heading": {
+    "message": "Fehlerart wählen"
+  },
+  "last_updated_at": {
+    "message": "Zuletzt aktualisiert: $date$ um $time$",
+    "placeholders": {
+      "date": {
+        "content": "$2"
+      },
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "last_updated_at_today": {
+    "message": "Zuletzt aktualisiert: heute um $time$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "line": {
+    "message": "Zeile $number$",
+    "placeholders": {
+      "number": {
+        "content": "$1"
+      }
+    }
+  },
+  "name": {
+    "message": "Adblock Plus"
+  },
+  "name_devbuild": {
+    "message": "Adblock Plus (Entwicklungsversion)"
+  },
+  "notification_antiadblock_message": {
+    "message": "Diese Seite hat in der Vergangenheit Adblock Plus-Nutzern gezielt Nachrichten angezeigt. Soll Adblock Plus Nachrichten dieser Art verstecken?"
+  },
+  "notification_antiadblock_title": {
+    "message": "Gezielte Nachrichten ausblenden?"
+  },
+  "notification_configure": {
+    "message": "Benachrichtigungen konfigurieren"
+  },
+  "notification_open_all": {
+    "message": "Öffne alle Links in dieser Benachrichtigung"
+  },
+  "notification_with_buttons": {
+    "message": "Auf 'OK' klicken, um alle Links in dieser Benachrichtigung zu öffnen."
+  },
+  "notification_without_buttons": {
+    "message": "Auf die Benachrichtigung klicken, um alle enthaltenen Links zu öffnen."
+  },
+  "options": {
+    "message": "Adblock Plus Optionen"
+  },
+  "options_short": {
+    "message": "Optionen"
+  },
+  "out_of_date_lists": {
+    "message": "Abgelaufene Filterlisten werden regelmäßig aktualisiert."
+  },
+  "overlay_notification_button_no": {
+    "message": "Nein"
+  },
+  "overlay_notification_button_yes": {
+    "message": "Ja"
+  },
+  "overlay_notification_closing_button_hide": {
+    "message": "Schließe diese Benachrichtigung"
+  },
+  "overlay_notification_closing_button_optout": {
+    "message": "Zeige keine weiteren Benachrichtigungen"
+  },
+  "overlay_shownotifications_label": {
+    "message": "Zeige nützliche Benachrichtigungen"
+  },
+  "remove_button": {
+    "message": "Ausgewählte entfernen"
+  },
+  "sendReport": {
+    "message": "Fehler auf dieser Seite melden"
+  },
+  "show_block_element_menu": {
+    "message": "Zeige Rechtsklickmenü-Eintrag 'Element blockieren'"
+  },
+  "show_devtools_panel": {
+    "message": "'Adblock Plus' Panel in den Entwicklertools anzeigen"
+  },
+  "stats_label_page": {
+    "message": "<strong>$number$</strong> auf dieser Seite",
+    "placeholders": {
+      "number": {
+        "content": "$1"
+      }
+    }
+  },
+  "stats_label_total": {
+    "message": "<strong>$number$</strong> insgesamt",
+    "placeholders": {
+      "number": {
+        "content": "$1"
+      }
+    }
+  },
+  "stats_over": {
+    "message": "über $number$",
+    "placeholders": {
+      "number": {
+        "content": "$1"
+      }
+    }
+  },
+  "stats_share_download": {
+    "message": "Adblock Plus herunterladen"
+  },
+  "stats_share_message": {
+    "message": "Ich habe $number$ Werbeanzeigen und Verfolgungsdienste dank Adblock Plus blockiert.",
+    "placeholders": {
+      "number": {
+        "content": "$1"
+      }
+    }
+  },
+  "stats_share_title": {
+    "message": "Diese Zahl teilen"
+  },
+  "stats_show_iconnumber": {
+    "message": "Anzahl im Symbol anzeigen"
+  },
+  "stats_title": {
+    "message": "Blockierte Werbeanzeigen"
+  },
+  "subscriptionSelection_location_label": {
+    "message": "Adresse der Filterliste:"
+  },
+  "subscriptionSelection_subscriptionSelector_label": {
+    "message": "Bitte wählen Sie ein Filterabonnement aus der Liste aus:"
+  },
+  "subscriptionSelection_title_label": {
+    "message": "Bezeichnung des Abonnements:"
+  },
+  "unexpected_filter_list_header": {
+    "message": "Filterlisten-Header sind hier nicht erlaubt"
+  },
+  "update_now": {
+    "message": "Jetzt aktualisieren"
+  },
+  "whitelisted_domains": {
+    "message": "Ausnahmen"
+  }
+}
