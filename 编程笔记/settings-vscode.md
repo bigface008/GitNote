@@ -18,7 +18,7 @@
         "vue-html": "html"
     },
     "emmet.triggerExpansionOnTab": true,
-    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?，。（）；、“”《》",
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?，。（）；、“”《》：",
     // "workbench.editor.enablePreview": false,
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 
@@ -46,6 +46,18 @@
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+            "before":["<C-w>"],
+            "commands": [
+                ":wq",
+            ]
+        },
+        {
+            "before":["<C-n>"],
+            "commands": [
+                ":nohl",
+            ]
+        },
+        {
             "before": [
                 "j"
             ],
@@ -64,6 +76,10 @@
             ]
         }
     ],
+    // "vim.autoSwitchInputMethod.enable": true,
+    // "vim.autoSwitchInputMethod.defaultIM": "1033",
+    // "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\program\\im-select\\im-select.exe",
+    // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\program\\im-select\\im-select.exe {im}",
 
     "window.zoomLevel": 0,
     "extensions.autoUpdate": false,

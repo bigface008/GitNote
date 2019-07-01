@@ -250,3 +250,5 @@
      }
    }
    ```
+
+3. 如果你发现一个`Controlled Component`的值在你在代码中明确设置后仍然可以修改，那你很可能是把它的值设成了`undefined`或`null`。
