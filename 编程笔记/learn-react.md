@@ -163,7 +163,7 @@
 
 9. Keys serve as a hint to React but they don’t get passed to your components. If you need the same value in your component, pass it explicitly as a prop with a different name.
 
-10. React中event传递参数的方法：
+0. React中event传递参数的方法：
    ```javascript
    handleChange(event) {
      this.setState({ value: event.target.value });
@@ -174,13 +174,13 @@
 
    一个奇怪的现象：这里如果给`<input />`加一个`id={this.state.value}`的参数，在`handleChange()`中获取`event.target.id`会比`event.target.value`滞后一个更改。
 
-11. 没有搞懂这东西咋用。
+1. 没有搞懂这东西咋用。
 
    ```html
    <input type="file" />
    ```
 
-12. 当你有很多个Input Event需要简单处理的时候，可以这么做来把所有处理压缩到一个函数中进行：
+2. 当你有很多个Input Event需要简单处理的时候，可以这么做来把所有处理压缩到一个函数中进行：
    ```javascript
    class Reservation extends React.Component {
      constructor(props) {
