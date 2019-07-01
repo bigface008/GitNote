@@ -11,7 +11,7 @@
 - Streams API
 - Connector API
 
-![img](./imgs/2019-06-25-1.png)
+![img](../imgs/2019-06-25-1.png)
 
 In Kafka the communication between the clients and the servers is done with a simple, high-performance, [language agnostic](#notes1) **TCP** protocol.
 
@@ -20,7 +20,7 @@ A **topic** is a category or feed name to which records are published. Topics in
 
 For **each topic**, the Kafka cluster maintains **a partitioned log** that looks like this:
 
-![img](./imgs/2019-06-25-2.png)
+![img](../imgs/2019-06-25-2.png)
 
 Each partition is an ordered, immutable sequence of records that is continually appended to a structured commit log. The records in the partitions are each assigned a sequential id number called the **offset** that uniquely identifies each record within the partition.
 
