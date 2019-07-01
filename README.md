@@ -6,11 +6,12 @@
 
 ## Workflow
 
-一般地，当且仅当下列情况发生时进行`git commit`。
+1. 一般地，当且仅当下列情况发生时进行`git commit`。
 
-- 完成了某篇笔记的修改。
-- 结束了当前平台上的工作，准备关机时。
+   - 完成了某篇笔记的修改。
+   - 结束了当前平台上的工作，准备关机时。
 
-应当尽量减少无意义的`commit`。
+   应当尽量减少无意义的`commit`。
 
-`commit`的格式应当为`{YY-MM-DD} {file_name/course_name}`。
+2. 普通地`commit`的格式应当为`{YY-MM-DD} {file_name/course_name}`。
+   所有的语句形式的`commet`应当有相应的句号。
