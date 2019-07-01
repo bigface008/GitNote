@@ -105,7 +105,9 @@
    > We don’t recommend using *indexes* for *keys* if the order of items may change. This can negatively impact performance and may cause issues with component state.
    
 8. 列表的`key`应当放置在*最外侧*。
+
    - Wrong
+
       ```js
       function ListItem(props) {
         const value = props.value;
@@ -134,7 +136,9 @@
         document.getElementById('root')
       );
       ```
+
    - Correct
+
       ```js
       function ListItem(props) {
         return <li>{props.value}</li>;
