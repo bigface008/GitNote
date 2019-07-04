@@ -28,7 +28,9 @@
     "vim.leader": "<space>",
     "vim.useSystemClipboard": true,
     "vim.handleKeys": {
-        "<C-f>": false
+        "<C-f>": false,
+        "<C-c>": false,
+        "<C-S-x>": false
     },
     // Bind p in visual mode to paste without overriding the current register.
     "vim.visualModeKeyBindingsNonRecursive": [
