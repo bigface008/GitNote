@@ -8,7 +8,7 @@
     },
     "editor.renderWhitespace": "boundary",
     // "editor.fontFamily": "Fira Code",
-    "editor.fontFamily": "CamingoCode",
+    "editor.fontFamily": "CamingoCode, Microsoft YaHei",
     // "editor.fontLigatures": true,
     "editor.rulers": [
         80
@@ -30,7 +30,7 @@
     "vim.handleKeys": {
         "<C-f>": false,
         "<C-c>": false,
-        "<C-S-x>": false
+        "<C-S-x>": false,
     },
     // Bind p in visual mode to paste without overriding the current register.
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -94,7 +94,15 @@
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false,
+    },
     "explorer.confirmDelete": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "python.autoComplete.addBrackets": true
     // "[javascript]": {
     //     "editor.defaultFormatter": "HookyQR.beautify"
     // },

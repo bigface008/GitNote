@@ -49,3 +49,39 @@
    ```
 
    In JavaScript, *a default parameter is evaluated every time the function is called without the respective parameter.* In the example above, `anotherFunction()` is called every time `showMessage()` is called without the text parameter. This is in contrast to some other languages like **Python**, where any default parameters are evaluated only once during the initial interpretation.
+
+7. 保留字符（关键字）是允许作为`object`的`key`的。
+
+   ```javascript
+   let obj = {
+     for: 1,
+     let: 2,
+     return: 3
+   };
+   ```
+
+8. `object`的属性赋值可以缩写。
+
+   ```javascript
+   function makeUser(name, age) {
+     return {
+       name: name,
+       age: age
+     };
+   }
+
+   function makeUser(name, age) {
+     return {
+       name, // same as name: name
+       age   // same as age: age
+       // ...
+     };
+   }
+
+   let user = {
+     name,
+     age
+   }
+   ```
+
+9. 
