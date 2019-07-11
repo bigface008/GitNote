@@ -8,7 +8,8 @@
     },
     "editor.renderWhitespace": "boundary",
     // "editor.fontFamily": "Fira Code",
-    "editor.fontFamily": "CamingoCode, Microsoft YaHei",
+    "editor.fontFamily": "Consolas, Microsoft YaHei",
+    // "editor.fontFamily": "CamingoCode, Microsoft YaHei",
     // "editor.fontLigatures": true,
     "editor.rulers": [
         80
@@ -78,10 +79,10 @@
             ]
         }
     ],
-    // "vim.autoSwitchInputMethod.enable": true,
-    // "vim.autoSwitchInputMethod.defaultIM": "1033",
-    // "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\program\\im-select\\im-select.exe",
-    // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\program\\im-select\\im-select.exe {im}",
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "1033",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\program\\im-select\\im-select.exe",
+    "vim.autoSwitchInputMethod.switchIMCmd": "D:\\program\\im-select\\im-select.exe {im}",
 
     "window.zoomLevel": 0,
     "extensions.autoUpdate": false,
@@ -102,7 +103,9 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.lintOnSave": true,
-    "python.autoComplete.addBrackets": true
+    "python.autoComplete.addBrackets": true,
+    "workbench.colorTheme": "GitHub Plus",
+    "markdown.extension.syntax.decorations": false
     // "[javascript]": {
     //     "editor.defaultFormatter": "HookyQR.beautify"
     // },

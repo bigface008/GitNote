@@ -13,4 +13,4 @@
 
    应当尽量减少无意义的`commit`。
 
-2. 普通地`commit`的格式应当为`{YY-MM-DD} {file_name/course_name}`。所有的语句形式的`commit`应当有相应的句号。
+2. 普通的`commit`的格式应当为`{YYMMDD}`。所有的语句形式的`commit`应当有相应的句号。
