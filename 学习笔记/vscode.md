@@ -7,9 +7,9 @@
         "editor.selectionHighlightBorder": "#666",
     },
     "editor.renderWhitespace": "boundary",
-    // "editor.fontFamily": "Fira Code",
-    "editor.fontFamily": "Consolas, Microsoft YaHei",
-    // "editor.fontFamily": "CamingoCode, Microsoft YaHei",
+    // "editor.fontFamily": "Fira Code, Microsoft YaHei",
+    // "editor.fontFamily": "Consolas, Microsoft YaHei",
+    "editor.fontFamily": "CamingoCode, Microsoft YaHei",
     // "editor.fontLigatures": true,
     "editor.rulers": [
         80
@@ -103,9 +103,10 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.lintOnSave": true,
-    "python.autoComplete.addBrackets": true,
-    "workbench.colorTheme": "GitHub Plus",
-    "markdown.extension.syntax.decorations": false
+    // "python.autoComplete.addBrackets": true,
+    "markdown.extension.syntax.decorations": false,
+    "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', 'Microsoft YaHei', sans-serif"
+    // "workbench.activityBar.visible": false
     // "[javascript]": {
     //     "editor.defaultFormatter": "HookyQR.beautify"
     // },
