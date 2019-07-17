@@ -125,5 +125,104 @@
    9
    >>> f3()
    9
-
    ```
+
+   如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变：
+
+   ```python
+   def count():
+       def f(j):
+           def g():
+               return j*j
+           return g
+       fs = []
+       for i in range(1, 4):
+           fs.append(f(i)) # f(i)立刻被执行，因此i的当前值被传入f()
+       return fs
+
+   # 对应输出
+   >>> f1, f2, f3 = count()
+   >>> f1()
+   1
+   >>> f2()
+   4
+   >>> f3()
+   9
+   ```
+
+   缺点是代码较长，可利用lambda函数缩短代码。
+
+
+7. 装饰器函数是个大坑。
+
+   ```python
+   import functools
+
+   def log(func):
+       @functools.wrap(func)
+       def wrapper(*args, **kw):
+           print('call %s():' % func.__name__)
+           return func(*args, **kw)
+       return wrapper
+
+   @log
+   def now():
+       print('2015-3-25')
+
+   >>> now()
+   call now():
+   2015-3-25
+
+   >>> now = log(now)
+
+   # 如果要加上参数，就要三层。
+   def log(text):
+       def decorator(func):
+           @functools.wrap(func)
+           def wrapper(*args, **kw):
+               print('%s %s():' % (text, func.__name__))
+               return func(*args, **kw)
+           return wrapper
+       return decorator
+
+   @log('execute')
+   def now():
+       print('2015-3-25')
+
+   >>> now()
+   execute now():
+   2015-3-25
+
+   >>> now = log('execute')(now)
+   ```
+
+8. 类中的变量如果开头加上`__`，就不能被外部访问了。（其实是可以的，不过解释器会把变量变成另外一个名字，当然你不应该试图访问这种“私有变量”）
+
+9. 可以判断一个变量是否是某些类型中的一种，比如下面的代码就可以判断是否是list或者tuple
+
+   ```python
+   >>> isinstance([1, 2, 3], (list, tuple))
+   True
+   >>> isinstance((1, 2, 3), (list, tuple))
+   True
+   ```
+
+0. 由于文件读写时都有可能产生IOError，一旦出错，后面的`f.close()`就不会调用。所以，为了保证无论是否出错都能正确地关闭文件，我们可以使用`try ... finally`来实现：
+
+   ```python
+   try:
+       f = open('/path/to/file', 'r')
+       print(f.read())
+   finally:
+       if f:
+           f.close()
+   ```
+
+   但是每次都这么写实在太繁琐，所以，Python引入了`with`语句来自动帮我们调用`close()`方法：
+
+   ```python
+   with open('/path/to/file', 'r') as f:
+       print(f.read())
+   ```
+
+   这和前面的`try ... finally`是一样的，但是代码更佳简洁，并且不必调用`f.close()`方法。

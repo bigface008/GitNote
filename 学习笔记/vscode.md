@@ -22,7 +22,6 @@
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?，。（）；、“”《》：",
     // "workbench.editor.enablePreview": false,
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-
     // Vim
     "vim.easymotion": true,
     "vim.hlsearch": true,
@@ -49,13 +48,17 @@
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before":["<C-w>"],
+            "before": [
+                "<C-w>"
+            ],
             "commands": [
                 ":wq",
             ]
         },
         {
-            "before":["<C-n>"],
+            "before": [
+                "<C-n>"
+            ],
             "commands": [
                 ":nohl",
             ]
@@ -83,7 +86,6 @@
     "vim.autoSwitchInputMethod.defaultIM": "1033",
     "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\program\\im-select\\im-select.exe",
     "vim.autoSwitchInputMethod.switchIMCmd": "D:\\program\\im-select\\im-select.exe {im}",
-
     "window.zoomLevel": 0,
     "extensions.autoUpdate": false,
     "extensions.ignoreRecommendations": false,
@@ -98,6 +100,7 @@
     "[markdown]": {
         "editor.wordWrap": "on",
         "editor.quickSuggestions": false,
+        "editor.tabSize": 4
     },
     "explorer.confirmDelete": false,
     "python.linting.enabled": true,
@@ -105,12 +108,26 @@
     "python.linting.lintOnSave": true,
     // "python.autoComplete.addBrackets": true,
     "markdown.extension.syntax.decorations": false,
-    "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', 'Microsoft YaHei', sans-serif"
+    // "markdown.preview."
+    "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', 'Microsoft YaHei', sans-serif",
     // "workbench.activityBar.visible": false
     // "[javascript]": {
     //     "editor.defaultFormatter": "HookyQR.beautify"
     // },
     // "workbench.activityBar.visible": false
+    // "go.useLanguageServer": true,
+    // "[go]": {
+    //     "editor.snippetSuggestions": "none",
+    //     "editor.formatOnSave": true,
+    //     // "editor.codeActionsOnSave": {
+    //     //     "source.organizeImports": true
+    //     // }
+    // },
+    // "gopls": {
+    //     "usePlaceholders": true // add parameter placeholders when completing a function
+    // },
+    // "files.eol": "\n", // formatting only supports LF line endings
+    
 }
 ```
 ## Others
