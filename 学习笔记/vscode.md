@@ -115,7 +115,7 @@
     //     "editor.defaultFormatter": "HookyQR.beautify"
     // },
     // "workbench.activityBar.visible": false
-    // "go.useLanguageServer": true,
+    "go.useLanguageServer": true,
     // "[go]": {
     //     "editor.snippetSuggestions": "none",
     //     "editor.formatOnSave": true,
@@ -123,11 +123,10 @@
     //     //     "source.organizeImports": true
     //     // }
     // },
-    // "gopls": {
-    //     "usePlaceholders": true // add parameter placeholders when completing a function
-    // },
+    "gopls": {
+        "usePlaceholders": true // add parameter placeholders when completing a function
+    },
     // "files.eol": "\n", // formatting only supports LF line endings
-    
 }
 ```
 ## Others
