@@ -1,5 +1,26 @@
 # Go 学习笔记
 
+  - [Documents](#documents)
+  - [Features of Go Language](#features-of-go-language)
+    - [1. Declaration of Variables](#1-declaration-of-variables)
+    - [2. `for`](#2-for)
+    - [3. `if`](#3-if)
+    - [4. `switch`](#4-switch)
+    - [5. `defer`](#5-defer)
+    - [6. Pointer](#6-pointer)
+    - [7. Struct](#7-struct)
+    - [8. Slice and Array](#8-slice-and-array)
+    - [9. `range`](#9-range)
+    - [10. Map](#10-map)
+    - [11. Function](#11-function)
+    - [12. Method](#12-method)
+    - [13. Interface](#13-interface)
+    - [14. Error](#14-error)
+  - [Other tips](#other-tips)
+    - [1. Bug of Installing Tool Chains For Go](#1-bug-of-installing-tool-chains-for-go)
+      - [失败原因](#失败原因)
+    - [2. gopls](#2-gopls)
+
 ## Documents
 
 - [A Tour of Go (Official)](https://tour.golang.org/welcome/1)
@@ -78,6 +99,7 @@ nmd, wsm := "U", "SB"
    case f():
    }
    ```
+
    does not call f if i==0.
 
 3. `switch` without a condition is the same as `switch true`. This construct can be a clean way to write long if-then-else chains.
@@ -345,12 +367,26 @@ for _, value := range pow
 
 1. 有个令人在意的地方。
 
-```go
-/* err是实现了Error()的对象。 */
-fmt.Printf("Error %s", err)
-fmt.Printf("Error %v", err)
-/* 这两东西打出来的值是一样的。 */
-```
+   ```go
+   /* err是实现了Error()的对象。 */
+   fmt.Printf("Error %s", err)
+   fmt.Printf("Error %v", err)
+   /* 这两东西打出来的值是一样的。 */
+   ```
+
+2. 常见的错误处理方式。
+
+   ```go
+   type error interface {
+       Error() string
+   }
+
+   i, err := strconv.Atoi("42")
+   if err != nil {
+       fmt.Printf("couldn't convert number: %v\n", err)
+       return
+   }
+   ```
 
 ## Other tips
 
@@ -404,7 +440,3 @@ cd $env:GOPATH\src\golang.org\x\tools
 git pull
 go install golang.org/x/tools/cmd/gopls
 ```
-
-| 项目 | 内容 |
-| ---- | ---- |
-| 123  | 234  |
