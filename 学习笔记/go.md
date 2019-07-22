@@ -1,5 +1,5 @@
 # Go 学习笔记
-
+- [Go 学习笔记](#go-学习笔记)
   - [Documents](#documents)
   - [Features of Go Language](#features-of-go-language)
     - [1. Declaration of Variables](#1-declaration-of-variables)
@@ -16,6 +16,8 @@
     - [12. Method](#12-method)
     - [13. Interface](#13-interface)
     - [14. Error](#14-error)
+    - [15. Printf](#15-printf)
+    - [16. Channel](#16-channel)
   - [Other tips](#other-tips)
     - [1. Bug of Installing Tool Chains For Go](#1-bug-of-installing-tool-chains-for-go)
       - [失败原因](#失败原因)
