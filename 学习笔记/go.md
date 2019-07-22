@@ -24,9 +24,9 @@
 ## Documents
 
 - [A Tour of Go (Official)](https://tour.golang.org/welcome/1)
+- [Answer of "A Tour of Go"](https://github.com/golang/tour/tree/master/solutions)
 
 ## Features of Go Language
-
 
 ### 1. Declaration of Variables
 
@@ -386,6 +386,51 @@ for _, value := range pow
        fmt.Printf("couldn't convert number: %v\n", err)
        return
    }
+   ```
+
+3. Error的实现的`Error()`方法，不能直接用`return fmt.Sprint(e)`，也不能`fmt.Sprintf("%v", e)`，要先把e转化为可打印的值。（不然貌似会无限调用`e.Error()`）。
+
+```go
+type ErrNegativeSqrt float64
+/* Right. */
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("Sqrt: negative number %v", float64(e))
+}
+/* Right. */
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("Sqrt: negative number %g", e)
+}
+/* Wrong!!! */
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("Sqrt: negative number %v", e)
+}
+```
+
+### 15. Printf
+
+直接看这个[链接](https://golang.org/pkg/fmt/)
+
+### 16. Channel
+
+1. 默认情况下，只有send的一端准备好了（`v <- ch`），receive的一端才能receive（`v := <-ch`）。
+
+   > By default, sends and receives block until the other side is ready.
+
+2. Channel不是总要关闭的。
+
+   > Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a range loop.
+
+   只有Sender可以关闭Channel，receiver则不可以。（这貌似是个设计原则）
+
+   > Sending on a closed channel will cause a panic.
+
+3. Channel的一些语法特性。
+
+   ```go
+   /* Channel可以指定大小（如果不指定，Channel就是unbuffered的）。 */
+   ch := make(chan int, 10)
+   /* ok可以判断channel是否被关闭。 */
+   v, ok := <-ch
    ```
 
 ## Other tips
