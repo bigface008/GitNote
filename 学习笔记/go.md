@@ -1,6 +1,358 @@
 # Go 学习笔记
 
-## Tips
+## Documents
+
+- [A Tour of Go (Official)](https://tour.golang.org/welcome/1)
+
+## Features of Go Language
+
+
+### 1. Declaration of Variables
+
+```go
+var nmd, wsm string = "U", "SB"
+var nmd, wsm = "U", "SB"
+nmd, wsm := "U", "SB"
+```
+
+### 2. `for`
+
+1. `{}`是必须要有的。`()`是不需要的。
+
+   ```go
+   for i := 0; i < 10; i++ {
+       sum += i
+   }
+   ```
+
+2. 不知道为啥，`i := 0`这东西是不可以写成有`var`的形式的。`go build`会报错。
+
+3. 初始化变量和累加的部分是可以省略的。
+
+   ```go
+   sum := 1
+   for ; sum < 1000; {
+       sum += sum
+   }
+   ```
+
+4. go里面貌似是没有`while`的，直接用`for`来代替。
+
+   ```go
+   sum := 1
+   for sum < 1000 {
+       sum += sum
+   }
+   ```
+
+5. 这个东西就是个`while true`循环。
+
+   ```go
+   for {
+   }
+   ```
+
+### 3. `if`
+
+1. `{}`也是不能省略的。`()`也是不需要的。
+
+2. `if`语句可以以一个赋值语句开始。不过这个值只在`if`语句内部才有用。
+
+   ```go
+   if v := math.Pow(x, n); v < lim {
+       return v
+   }
+   ```
+
+### 4. `switch`
+
+1. > Go's switch is like the one in C, C++, Java, JavaScript, and PHP, except that Go only runs the selected case, not all the cases that follow. In effect, the break statement that is needed at the end of each case in those languages is provided automatically in Go. Another important difference is that Go's switch cases need not be constants, and the values involved need not be integers.
+
+   Go only runs the selected case, not all the cases that follow. （TODO:没看懂）
+
+2.  Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
+
+   ```go
+   switch i {
+   case 0:
+   case f():
+   }
+   ```
+   does not call f if i==0.
+
+3. `switch` without a condition is the same as `switch true`. This construct can be a clean way to write long if-then-else chains.
+
+   ```go
+   t := time.Now()
+   switch {
+   case t.Hour() < 12:
+       fmt.Println("Good morning!")
+   case t.Hour() < 17:
+       fmt.Println("Good afternoon.")
+   default:
+       fmt.Println("Good evening.")
+   }
+   ```
+
+### 5. `defer`
+
+`defer`后的语句在所在函数结束后执行。不过其中的变量是碰到`defer`之后就确定的。
+
+### 6. Pointer
+
+Unlike C, Go has no pointer arithmetic.（TODO:并没有搞懂）
+
+### 7. Struct
+
+```go
+type Vertex struct {
+    X int
+    Y int
+}
+/* 下面这个不是struct，不过可以这么干。 */
+type MyFloat float64
+```
+
+### 8. Slice and Array
+
+[Slice内部工作原理](https://blog.golang.org/go-slices-usage-and-internals)
+
+> If the backing array of a slice is too small to fit all the given values, a bigger array will be allocated. The returned slice will point to the newly allocated array.
+
+slice的用法过于奇葩，你还是直接到这个[链接](https://tour.golang.org/moretypes/7)上去看吧。
+
+### 9. `range`
+
+```go
+for i, v := range pow {
+    fmt.Printf("2**%d = %d\n", i, v)
+}
+```
+
+`i`是index，`v`是对应元素。还可以进行一定的省略。
+
+```go
+for i := range pow
+for i, _ := range pow
+for _, value := range pow
+```
+
+### 10. Map
+
+1. map加入key之前是一定要绑定的。
+
+   ```go
+   type Vertex struct {
+       Lat, Long float64
+   }
+   /* 像这样： */
+   var m map[string]Vertex
+   m = make(map[string]Vertex)
+   /* 或是这样： */
+   var m = map[string]Vertex{
+       "Bell Labs": Vertex{
+           40.68433, -74.39967,
+       },
+       "Google": Vertex{
+           37.42202, -122.08408,
+       },
+   }
+   ```
+
+2. 和map关系不大但是还写在这里算了。
+
+   ```go
+   /* Right. */
+   m["Bell Labs"] = Vertex{ 40.68433, -74.39967 }
+   /* Right. */
+   m["Bell Labs"] = Vertex{ 40.68433, -74.39967, }
+   /* Right. */
+   m["Bell Labs"] = Vertex{
+       40.68433, -74.39967,
+   }
+   /* False!!! */
+   m["Bell Labs"] = Vertex{
+       40.68433, -74.39967
+   }
+   ```
+
+3. If the top-level type is just a type name, you can omit it from the elements of the literal.
+
+   ```go
+   type Vertex struct {
+       Lat, Long float64
+   }
+
+   var m = map[string]Vertex{
+       "Bell Labs": {40.68433, -74.39967},
+       "Google":    {37.42202, -122.08408},
+   }
+   ```
+
+4. 检测map中是否存在key。
+
+   ```go
+   elem, ok = m[key]
+   /* 如果elem, ok没被声明过 */
+   elem, ok := m[key]
+   ```
+
+### 11. Function
+
+1. 关于闭包。注意，这个实现方式貌似说明了`prev, next = next, prev + next`的计算顺序是先计算右边的东西，算完了之后统一赋给左边的变量。
+
+   ```go
+   func fibonacci() func() int {
+       prev := 0
+       next := 1
+       return func() int {
+           prev, next = next, prev + next
+           return prev
+       }
+   }
+   
+   func main() {
+       f := fibonacci()
+       for i := 0; i < 10; i++ {
+           fmt.Println(f())
+       }
+   }
+   ```
+
+2. 一些函数定义的方式。
+
+   ```go
+   func split(sum int) (x, y int) {
+       x = sum * 4 / 9
+       y = sum - x
+       return
+   }
+
+   func swap(x, y string) (string, string) {
+       return y, x
+   }
+
+   func add(x, y int) int {
+       return x + y
+   }
+   ```
+
+### 12. Method
+
+1. Method只是接受了一个“对象”参数的函数而已。
+
+   ```go
+   type Vertex struct {
+       X, Y float64
+   }
+   
+   func Abs(v Vertex) float64 {
+       return math.Sqrt(v.X*v.X + v.Y*v.Y)
+   }
+   
+   func main() {
+       v := Vertex{3, 4}
+       fmt.Println(Abs(v))
+   }
+   ```
+
+2. Method对应的对象必须和Method在同一个package内。
+
+3. Method接收的receiver如果是指向对象的指针，Method就可以改变该对象的值。（所以，指针形式实际上更常见）如果receiver是对象的话值就不能改变了（这种情况下实际上是原来对象的拷贝被传给了Method）
+
+   ```go
+   func (v *Vertex) Scale(f float64) {
+       v.X = v.X * f
+       v.Y = v.Y * f
+   }
+   ```
+
+4. Method被调用时，如果其receiver为指向对象的指针，则调用者即使是对象也会自动转成指向它的指针。
+
+   ```go
+   func (v *Vertex) Scale(f float64) {
+       v.X = v.X * f
+       v.Y = v.Y * f
+   }
+   var v Vertex
+   v.Scale(5)  // OK. 这里v.Scale()被转化成了(&v).Scale()
+   p := &v
+   p.Scale(10) // OK.
+   ```
+
+   这里有个神奇的东西：如果receiver为对象，调用者为指针，编译并不会报错。（确实有这种用法）不过这样就无法改变对象本身的值了。
+
+   ```go
+   func (v Vertex) Abs() float64 {
+       return math.Sqrt(v.X*v.X + v.Y*v.Y)
+   }
+   var v Vertex
+   fmt.Println(v.Abs()) // OK.
+   p := &v
+   fmt.Println(p.Abs()) // OK. 这里p.Abs()被转化成了(*p).Abs()
+   ```
+
+### 13. Interface
+
+1. 在Go中，Interface的value如果是`nil`的话，并不会出现什么问题。只要在调用的方法中加入对应的`nil`判断即可。
+
+   ```go
+   type I Interface {
+       M()
+   }
+
+   type T struct {
+       S string
+   }
+
+   func (t *T) M() {
+       if t == nil {
+           fmt.Println("<nil>")
+           return
+       }
+       fmt.Println(t.S)
+   }
+
+   var i
+   var t *T
+   i.M() // 没有问题。
+   ```
+
+   注意这种情况下Interface本身并不是`nil`的。而如果Interface自己没有绑定对象，那就没办法了。
+
+   ```go
+   var i I
+   i.M() // 会有runtime error。
+   ```
+
+2. 空的interface，`interface{}`，用来表示不知道具体类型（并不清楚有啥方法）的值。`fmt.Println()`就用这东西来代表跟在字符串后的参数。
+
+3. Type assertions
+
+   这东西可以检查interface内的值是否符合某个实例的类型（这句话是我乱讲的）。
+
+   ```go
+   var i interface{} = "hello"
+   s := i.(string)      // Right.
+   s, ok := i.(string)  // ok == true
+   f, ok := i.(float64) // ok == false，但是不会报错。
+   f = i.(float64)      // 报错interface conversion。
+   ```
+
+4. [Type switches](https://tour.golang.org/methods/16)
+
+### 14. Error
+
+1. 有个令人在意的地方。
+
+```go
+/* err是实现了Error()的对象。 */
+fmt.Printf("Error %s", err)
+fmt.Printf("Error %v", err)
+/* 这两东西打出来的值是一样的。 */
+```
+
+## Other tips
 
 ### 1. Bug of Installing Tool Chains For Go
 
@@ -43,230 +395,16 @@ TODO:这个问题果然还是很让人在意:expressionless:
 
 > 原因其实很简单：golang.org 在国内由于一些 众所周知的 原因无法直接访问，而go get在获取gocode、go-def、golint等插件依赖工具的源码时，需要从 golang.org 上拉取部分代码至GOPATH，自然就导致了最后这些依赖于 golang.org 代码的依赖工具安装失败。
 
-### 2. Declaration of Variables
+### 2. gopls
 
-```go
-var nmd, wsm string = "U", "SB"
-var nmd, wsm = "U", "SB"
-nmd, wsm := "U", "SB"
+这东西还处在活跃开发状态，你要查看更新的时候，就这么搞。（下面的命令自然是适用于Windows平台的）
+
+```shell
+cd $env:GOPATH\src\golang.org\x\tools
+git pull
+go install golang.org/x/tools/cmd/gopls
 ```
 
-### 3. `for`
-
-1. `{}`是必须要有的。`()`是不需要的。
-
-   ```go
-   for i := 0; i < 10; i++ {
-       sum += i
-   }
-   ```
-
-2. 不知道为啥，`i := 0`这东西是不可以写成有`var`的形式的。`go build`会报错。
-
-3. 初始化变量和累加的部分是可以省略的。
-
-   ```go
-   sum := 1
-   for ; sum < 1000; {
-       sum += sum
-   }
-   ```
-
-4. go里面貌似是没有`while`的，直接用`for`来代替。
-
-   ```go
-   sum := 1
-   for sum < 1000 {
-       sum += sum
-   }
-   ```
-
-5. 这个东西就是个`while true`循环。
-
-   ```go
-   for {
-   }
-   ```
-
-### 4. `if`
-
-1. `{}`也是不能省略的。`()`也是不需要的。
-
-2. `if`语句可以以一个赋值语句开始。不过这个值只在`if`语句内部才有用。
-
-   ```go
-   if v := math.Pow(x, n); v < lim {
-       return v
-   }
-   ```
-
-### 5. `switch`
-
-1. > Go's switch is like the one in C, C++, Java, JavaScript, and PHP, except that Go only runs the selected case, not all the cases that follow. In effect, the break statement that is needed at the end of each case in those languages is provided automatically in Go. Another important difference is that Go's switch cases need not be constants, and the values involved need not be integers.
-
-   Go only runs the selected case, not all the cases that follow. （TODO:没看懂）
-
-2.  Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
-
-   ```go
-   switch i {
-   case 0:
-   case f():
-   }
-   ```
-   does not call f if i==0.
-
-3. `switch` without a condition is the same as `switch true`. This construct can be a clean way to write long if-then-else chains.
-
-   ```go
-   t := time.Now()
-   switch {
-   case t.Hour() < 12:
-       fmt.Println("Good morning!")
-   case t.Hour() < 17:
-       fmt.Println("Good afternoon.")
-   default:
-       fmt.Println("Good evening.")
-   }
-   ```
-
-### 6. `defer`
-
-`defer`后的语句在所在函数结束后执行。不过其中的变量是碰到`defer`之后就确定的。
-
-### 7. Pointer
-
-Unlike C, Go has no pointer arithmetic.（TODO:并没有搞懂）
-
-### 8. Struct
-
-```go
-type Vertex struct {
-    X int
-    Y int
-}
-```
-
-### 9. Slice and Array
-
-[Slice内部工作原理](https://blog.golang.org/go-slices-usage-and-internals)
-
-> If the backing array of a slice is too small to fit all the given values, a bigger array will be allocated. The returned slice will point to the newly allocated array.
-
-slice的用法过于奇葩，你还是直接到这个[链接](https://tour.golang.org/moretypes/7)上去看吧。
-
-### 10. `range`
-
-```go
-for i, v := range pow {
-    fmt.Printf("2**%d = %d\n", i, v)
-}
-```
-
-`i`是index，`v`是对应元素。还可以进行一定的省略。
-
-```go
-for i := range pow
-for i, _ := range pow
-for _, value := range pow
-```
-
-### 11. Map
-
-1. map加入key之前是一定要绑定的。
-
-   ```go
-   type Vertex struct {
-       Lat, Long float64
-   }
-   // 像这样：
-   var m map[string]Vertex
-   m = make(map[string]Vertex)
-   // 或是这样：
-   var m = map[string]Vertex{
-       "Bell Labs": Vertex{
-           40.68433, -74.39967,
-       },
-       "Google": Vertex{
-           37.42202, -122.08408,
-       },
-   }
-   ```
-
-2. 和map关系不大但是还写在这里算了。
-
-   ```go
-   // Right.
-   m["Bell Labs"] = Vertex{ 40.68433, -74.39967 }
-   // Right.
-   m["Bell Labs"] = Vertex{ 40.68433, -74.39967, }
-   // Right.
-   m["Bell Labs"] = Vertex{
-       40.68433, -74.39967,
-   }
-   // False!!!
-   m["Bell Labs"] = Vertex{
-       40.68433, -74.39967
-   }
-   ```
-
-3. If the top-level type is just a type name, you can omit it from the elements of the literal.
-
-   ```go
-   type Vertex struct {
-       Lat, Long float64
-   }
-
-   var m = map[string]Vertex{
-       "Bell Labs": {40.68433, -74.39967},
-       "Google":    {37.42202, -122.08408},
-   }
-   ```
-
-4. 检测map中是否存在key。
-
-   ```go
-   elem, ok = m[key]
-   // 如果elem, ok没被声明过
-   elem, ok := m[key]
-   ```
-
-### 12. Function
-
-1. 关于闭包。注意，这个实现方式貌似说明了`prev, next = next, prev + next`的计算顺序是先计算右边的东西，算完了之后统一赋给左边的变量。
-
-   ```go
-   func fibonacci() func() int {
-       prev := 0
-       next := 1
-       return func() int {
-           prev, next = next, prev + next
-           return prev
-       }
-   }
-   
-   func main() {
-       f := fibonacci()
-       for i := 0; i < 10; i++ {
-           fmt.Println(f())
-       }
-   }
-   ```
-
-2. 一些函数定义的方式。
-
-   ```go
-   func split(sum int) (x, y int) {
-       x = sum * 4 / 9
-       y = sum - x
-       return
-   }
-
-   func swap(x, y string) (string, string) {
-       return y, x
-   }
-
-   func add(x, y int) int {
-       return x + y
-   }
-   ```
+| 项目 | 内容 |
+| ---- | ---- |
+| 123  | 234  |

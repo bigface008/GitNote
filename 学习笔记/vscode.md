@@ -31,6 +31,7 @@
         "<C-f>": false,
         "<C-c>": false,
         "<C-S-x>": false,
+        "<C-a>": false
     },
     // Bind p in visual mode to paste without overriding the current register.
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -116,17 +117,19 @@
     // },
     // "workbench.activityBar.visible": false
     "go.useLanguageServer": true,
-    // "[go]": {
-    //     "editor.snippetSuggestions": "none",
-    //     "editor.formatOnSave": true,
-    //     // "editor.codeActionsOnSave": {
-    //     //     "source.organizeImports": true
-    //     // }
-    // },
-    "gopls": {
-        "usePlaceholders": true // add parameter placeholders when completing a function
+    "[go]": {
+        "editor.snippetSuggestions": "none",
+        // "editor.formatOnSave": true,
+        // "editor.codeActionsOnSave": {
+        //     "source.organizeImports": true
+        // }
     },
+    "gopls": {
+        "usePlaceholders": false // add parameter placeholders when completing a function
+    },
+    // "go.useCodeSnippetsOnFunctionSuggest": false
     // "files.eol": "\n", // formatting only supports LF line endings
+    "breadcrumbs.symbolSortOrder": "position"
 }
 ```
 ## Others
