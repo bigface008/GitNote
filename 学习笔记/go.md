@@ -392,21 +392,21 @@ for _, value := range pow
 
 3. Error的实现的`Error()`方法，不能直接用`return fmt.Sprint(e)`，也不能`fmt.Sprintf("%v", e)`，要先把e转化为可打印的值。（不然貌似会无限调用`e.Error()`）。
 
-```go
-type ErrNegativeSqrt float64
-/* Right. */
-func (e ErrNegativeSqrt) Error() string {
-	return fmt.Sprintf("Sqrt: negative number %v", float64(e))
-}
-/* Right. */
-func (e ErrNegativeSqrt) Error() string {
-	return fmt.Sprintf("Sqrt: negative number %g", e)
-}
-/* Wrong!!! */
-func (e ErrNegativeSqrt) Error() string {
-	return fmt.Sprintf("Sqrt: negative number %v", e)
-}
-```
+   ```go
+   type ErrNegativeSqrt float64
+   /* Right. */
+   func (e ErrNegativeSqrt) Error() string {
+       return fmt.Sprintf("Sqrt: negative number %v", float64(e))
+   }
+   /* Right. */
+   func (e ErrNegativeSqrt) Error() string {
+       return fmt.Sprintf("Sqrt: negative number %g", e)
+   }
+   /* Wrong!!! */
+   func (e ErrNegativeSqrt) Error() string {
+       return fmt.Sprintf("Sqrt: negative number %v", e)
+   }
+   ```
 
 ### 15. Printf
 
@@ -435,22 +435,29 @@ func (e ErrNegativeSqrt) Error() string {
    v, ok := <-ch
    ```
 
+4. tour里面的小问题。
+
+   - unbuffered的Channel只有在Sender、Receiver都准备好的情况下可以工作，不然就会阻塞。所以，[#tour-currency-5](https://tour.golang.org/concurrency/5)里面的`c <- x`实际上可能执行第11次，但是下一次肯定会到`quit`然后推出，因为`c`阻塞住了。
+   - [#tour-currency-6](https://tour.golang.org/concurrency/6)中，0.5秒的周期到了的时候，tick是可能发生的（所以可能有5次tick），但是下一次for循环到`select`的时候，tick中的值已经被拿掉了，而boom中的值还在，所以会走boom而结束。
+
 ## Other tips
 
 ### 1. Bug of Installing Tool Chains For Go
 
 像`gocode`、`guru`、`gorename`这种东西貌似不是包括在Google官方工具包里面的（TODO:有待考证），所以VScode里面安装Go插件之后会提示要再装一下，不然补全之类的功能会很残废。不过，你让他自己装可能会出现下面这种输出
 
-    Installing github.com/golang/lint/golint FAILED
+```
+Installing github.com/golang/lint/golint FAILED
 
-    Installing github.com/cweill/gotests/... FAILED
-    Installing github.com/derekparker/delve/cmd/dlv SUCCEEDED
-    8 tools failed to install.
-    go-outline:
-    Error: Command failed: D:\Go\bin\go.exe get -u -v github.com/ramya-rao-a/go-outline
-    github.com/ramya-rao-a/go-outline (download)
-    Fetching https://golang.org/x/tools/go/buildutil?go-get=1
-    https fetch failed: Get https://golang.org/x/tools/go/buildutil?go-get=1: dial tcp 216.239.37.1:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Installing github.com/cweill/gotests/... FAILED
+Installing github.com/derekparker/delve/cmd/dlv SUCCEEDED
+8 tools failed to install.
+go-outline:
+Error: Command failed: D:\Go\bin\go.exe get -u -v github.com/ramya-rao-a/go-outline
+github.com/ramya-rao-a/go-outline (download)
+Fetching https://golang.org/x/tools/go/buildutil?go-get=1
+https fetch failed: Get https://golang.org/x/tools/go/buildutil?go-get=1: dial tcp 216.239.37.1:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+```
 
 这貌似并不是科学上网就能解决的。[这篇帖子](https://zhuanlan.zhihu.com/p/56567884)里面说国际友人也会遇到[这种问题](https://github.com/Microsoft/vscode-go/issues/2142)。解决方案如下。（用于Windows）
 
