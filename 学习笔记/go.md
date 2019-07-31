@@ -25,8 +25,12 @@
 
 ## Documents
 
-- [A Tour of Go (Official)](https://tour.golang.org/welcome/1)
+- [Go doc](https://golang.org/doc/)
+- [A Tour of Go (Official)](https://tour.golang.org/welcome/1)(这东西最后一页有一些重要的文档链接)
 - [Answer of "A Tour of Go"](https://github.com/golang/tour/tree/master/solutions)
+- [Effective Go](https://golang.org/doc/effective_go.html)(如何写出高效、健壮的Go程序)
+- [Diagnostic](https://golang.org/doc/diagnostics.html)(如何诊断Go程序中的问题)
+- [Wiki](https://golang.org/wiki)
 
 ## Features of Go Language
 
@@ -440,6 +444,21 @@ for _, value := range pow
    - unbuffered的Channel只有在Sender、Receiver都准备好的情况下可以工作，不然就会阻塞。所以，[#tour-currency-5](https://tour.golang.org/concurrency/5)里面的`c <- x`实际上可能执行第11次，但是下一次肯定会到`quit`然后推出，因为`c`阻塞住了。
    - [#tour-currency-6](https://tour.golang.org/concurrency/6)中，0.5秒的周期到了的时候，tick是可能发生的（所以可能有5次tick），但是下一次for循环到`select`的时候，tick中的值已经被拿掉了，而boom中的值还在，所以会走boom而结束。
 
+5. 互斥锁`sync.Mutex`的神奇省略写法
+
+   ```go
+   var fetched = struct {
+       m map[string]error
+       sync.Mutex
+   }{m: make(map[string]error)}
+
+   /* 然后在加、放锁的时候，可以这么写（TODO: 有待考证） */
+   fetched.Lock()
+   fetched.Unlock()
+   ```
+
+   
+
 ## Other tips
 
 ### 1. Bug of Installing Tool Chains For Go
@@ -483,7 +502,7 @@ TODO:这个问题果然还是很让人在意:expressionless:
 
 #### [失败原因](https://zhuanlan.zhihu.com/p/53566172)
 
-> 原因其实很简单：golang.org 在国内由于一些 众所周知的 原因无法直接访问，而go get在获取gocode、go-def、golint等插件依赖工具的源码时，需要从 golang.org 上拉取部分代码至GOPATH，自然就导致了最后这些依赖于 golang.org 代码的依赖工具安装失败。
+> 原因其实很简单：golang.org 在国内由于一些*众所周知的*原因无法直接访问，而go get在获取gocode、go-def、golint等插件依赖工具的源码时，需要从 golang.org 上拉取部分代码至GOPATH，自然就导致了最后这些依赖于 golang.org 代码的依赖工具安装失败。
 
 ### 2. gopls
 

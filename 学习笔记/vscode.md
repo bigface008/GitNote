@@ -9,6 +9,8 @@
     "editor.renderWhitespace": "boundary",
     // "editor.fontFamily": "Fira Code, Microsoft YaHei",
     // "editor.fontFamily": "Consolas, Microsoft YaHei",
+    // "editor.fontFamily": "Iosevka, Microsoft YaHei",
+    // "editor.fontFamily": "Microsoft YaHei Mono",
     "editor.fontFamily": "CamingoCode, Microsoft YaHei",
     // "editor.fontLigatures": true,
     "editor.rulers": [
@@ -31,7 +33,6 @@
         "<C-f>": false,
         "<C-c>": false,
         "<C-S-x>": false,
-        "<C-a>": false
     },
     // Bind p in visual mode to paste without overriding the current register.
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -101,7 +102,8 @@
     "[markdown]": {
         "editor.wordWrap": "on",
         "editor.quickSuggestions": false,
-        "editor.tabSize": 4
+        "editor.tabSize": 4,
+        "breadcrumbs.symbolSortOrder": "position",
     },
     "explorer.confirmDelete": false,
     "python.linting.enabled": true,
@@ -129,9 +131,15 @@
     },
     // "go.useCodeSnippetsOnFunctionSuggest": false
     // "files.eol": "\n", // formatting only supports LF line endings
-    "breadcrumbs.symbolSortOrder": "position"
+    "breadcrumbs.symbolSortOrder": "position",
+    "markdown.extension.toc.githubCompatibility": true
 }
 ```
+
+## `task.json`
+
+请看这个[链接](https://code.visualstudio.com/docs/editor/tasks)
+
 ## Others
 1. VScodeVim的链接请到[此处](https://github.com/VSCodeVim/Vim)查看。im-select的链接请到[此处](https://github.com/daipeihust/im-select)查看。
 2. 目前使用[CamingoCode](https://github.com/chrissimpkins/codeface/tree/master/fonts/camingo-code)字体。
