@@ -30,6 +30,15 @@
 
 2. C++11中引入了关键字`nullptr`作为空指针的值。在新的标准下最好用`nullptr`而非`NULL`初始化指针。
 
+3. **指向常量的指针**不能用于改变其所指向的对象的值。要想存放常量对象的地址，只能使用指向常量的指针。
+
+   ```cpp
+   const double pi = 3.14;
+   double *ptr = &pi;
+   const double *cptr = &pi;
+   *cptr = 42;
+   ```
+
 ### `extern`
 
 1. `const`
