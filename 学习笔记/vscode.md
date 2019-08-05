@@ -1,4 +1,19 @@
 # Visual Studio Code 使用笔记
+
+目前使用Setting Sync来同步设置，所以设置文件就不用复制到这里了。
+
+## Issues
+
+1. 目前貌似还没有配置一段被选中的文本周围加上的字符的、语言相关的选项。请看这个[链接](https://github.com/microsoft/vscode/issues/38352)。相关的配置貌似是写死在vscode的editor core[里面](https://github.com/Microsoft/vscode/blob/c7c988c5af378cf4fb4de62066f3783fb5f2e57b/extensions/markdown/language-configuration.json#L15)的。
+
+   如果要上issue找，你就输[surround selection](https://github.com/microsoft/vscode/issues?utf8=%E2%9C%93&q=surround+selection)。
+
+2. 目前Symbol大纲的默认排序貌似还是有点问题。
+
+## Others
+1. VScodeVim的链接请到[此处](https://github.com/VSCodeVim/Vim)查看。im-select的链接请到[此处](https://github.com/daipeihust/im-select)查看。
+2. 目前使用[CamingoCode](https://github.com/chrissimpkins/codeface/tree/master/fonts/camingo-code)字体。
+
 ## Setting File
 ```json
 {
@@ -144,11 +159,3 @@
 ## `task.json`
 
 请看这个[链接](https://code.visualstudio.com/docs/editor/tasks)
-
-## Issues
-
-1. 目前貌似还没有配置一段被选中的文本周围加上的字符的、语言相关的选项。请看这个[链接](https://github.com/microsoft/vscode/issues/38352)。相关的配置貌似是写死在vscode的editor core[里面](https://github.com/Microsoft/vscode/blob/c7c988c5af378cf4fb4de62066f3783fb5f2e57b/extensions/markdown/language-configuration.json#L15)的。
-
-## Others
-1. VScodeVim的链接请到[此处](https://github.com/VSCodeVim/Vim)查看。im-select的链接请到[此处](https://github.com/daipeihust/im-select)查看。
-2. 目前使用[CamingoCode](https://github.com/chrissimpkins/codeface/tree/master/fonts/camingo-code)字体。
