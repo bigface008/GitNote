@@ -101,6 +101,7 @@
     },
     "[markdown]": {
         "editor.wordWrap": "on",
+        "editor.wordWrapColumn": 80,
         "editor.quickSuggestions": false,
         "editor.tabSize": 4,
         "breadcrumbs.symbolSortOrder": "position",
@@ -129,6 +130,10 @@
     "gopls": {
         "usePlaceholders": false // add parameter placeholders when completing a function
     },
+    "[cpp]": {
+        // "editor.wordBasedSuggestions": false
+        "breadcrumbs.symbolSortOrder": "position"
+    },
     // "go.useCodeSnippetsOnFunctionSuggest": false
     // "files.eol": "\n", // formatting only supports LF line endings
     "breadcrumbs.symbolSortOrder": "position",
@@ -139,6 +144,10 @@
 ## `task.json`
 
 请看这个[链接](https://code.visualstudio.com/docs/editor/tasks)
+
+## Issues
+
+1. 目前貌似还没有配置一段被选中的文本周围加上的字符的、语言相关的选项。请看这个[链接](https://github.com/microsoft/vscode/issues/38352)。相关的配置貌似是写死在vscode的editor core[里面](https://github.com/Microsoft/vscode/blob/c7c988c5af378cf4fb4de62066f3783fb5f2e57b/extensions/markdown/language-configuration.json#L15)的。
 
 ## Others
 1. VScodeVim的链接请到[此处](https://github.com/VSCodeVim/Vim)查看。im-select的链接请到[此处](https://github.com/daipeihust/im-select)查看。
