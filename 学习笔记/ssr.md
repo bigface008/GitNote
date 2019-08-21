@@ -66,7 +66,7 @@
 使用方法：
 使用root用户登录，运行以下命令：
 
-## CentOS
+### CentOS
 
 ```
 wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh
@@ -109,3 +109,35 @@ Enjoy it!
 参考链接：
 [https://github.com/madeye/shadowsocks-libev](https://github.com/madeye/shadowsocks-libev)
 [https://shadowsocks.be/4.html](https://shadowsocks.be/4.html)
+
+## 一键式SSR
+
+1. 输入命令
+
+   ```shell
+   $ wget --no-ckeck-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/ shadowsocks_install/master/shadowsocks-all.sh
+   $ chmod +x shadowsocks-all.sh
+   $ ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
+   ```
+
+2. 接下来选择参数
+
+   ![img](../imgs/2018-07-12_154217.jpg)
+
+   ![img](../imgs/2018-07-12_154332.jpg)
+
+   ![img](../imgs/2018-07-12_154422.jpg)
+
+   ![img](../imgs/2018-07-12_154549.jpg)
+
+   这里的混合方式建议选择md5以下的。
+
+   ![img](../imgs/2018-07-12_154640.jpg)
+
+   ![img](../imgs/2018-07-12_154714.jpg)
+
+   ![img](../imgs/2018-07-12_154823.jpg)
+
+   ![img](../imgs/2018-07-12_155328.jpg)
+
+   最后的各种信息一定要记好......
