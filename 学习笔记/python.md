@@ -100,14 +100,102 @@
 
 ### 杨辉三角
 
-   ```python
-   def gen(max):
-       re = [1]
-       while max:
-           yield re
-           re = [a + b for (a, b) in zip([0] + re, re + [0])]
-           max -= 1
-   ```
+普通的实现：
+
+```python
+def gen(max):
+    re = [1]
+    while max:
+        yield re
+        re = [a + b for (a, b) in zip([0] + re, re + [0])]
+        max -= 1
+```
+
+如果要用生成器的话？**这里有个有意思的问题**。
+
+```python
+# 1st Implementation
+def triangles():
+    L = [1]
+    while True:
+        yield L
+        L.append(0)
+        for i in range(len(L) - 1, 0, -1):
+            L[i] += L[i - 1]
+
+# 2nd Implementation
+def triangles3():
+    L = [1]
+    while True:
+        yield L
+        L = [1] + [L[n]+L[n+1] for n in range(len(L)-1)] + [1]
+
+# 测试代码
+n = 0
+results = []
+for t in myFunc.triangles():
+    # print(t)
+    results.append(t)
+    n = n + 1
+    if n == 10:
+        break
+
+for t in results:
+    print(t)
+```
+
+你会发现，第一种实现的输出会是这样（有问题）
+
+```
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+```
+
+第二种实现的输出会是这样（正确）
+```
+[1]
+[1, 1]
+[1, 2, 1]
+[1, 3, 3, 1]
+[1, 4, 6, 4, 1]
+[1, 5, 10, 10, 5, 1]
+[1, 6, 15, 20, 15, 6, 1]
+[1, 7, 21, 35, 35, 21, 7, 1]
+[1, 8, 28, 56, 70, 56, 28, 8, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+```
+
+究其原因，是因为**python中的list中的每一项实际上是一个个引用，引用指向对应的数据**。
+在第一种实现中，你每次改变L原来指向位置的数据的值，并且返回指向同一个位置的引用（L），会使得results中的每一项指向的值（同一个）不断变化。
+第二种实现中，每次都把L置为了一个新的值，使得results中每个元素为不同的数据的引用，自然得到正确的值。
+
+为了加深印象，你可以看看下面。
+
+```shell
+>>> V = []
+>>> V.append(0)
+>>> LV = []
+>>> LV.append(V)
+>>> LV
+[[0]]
+>>> V.append(1)
+>>> LV
+[[0, 1]]
+>>> V = [2]
+>>> LV
+[[0, 1]]
+>>> LV.append(V)
+>>> LV
+[[0, 1], [2]]
+```
 
 ### 闭包、循环变量
 
@@ -162,6 +250,8 @@ def count():
 
 装饰器函数是个大坑。
 
+本质上来说，在`now`定义前面加上`@log()`，就相当于语句`now = log(now)`。
+
 ```python
 import functools
 
@@ -179,8 +269,6 @@ def now():
 >>> now()
 call now():
 2015-3-25
-
->>> now = log(now)
 
 # 如果要加上参数，就要三层。
 def log(text):
@@ -269,3 +357,130 @@ def fact_iter(num, product):
 针对尾递归优化的语言可以通过尾递归防止栈溢出。尾递归事实上和循环是等价的，没有循环语句的编程语言只能通过尾递归实现循环。
 
 Python标准的解释器没有针对尾递归做优化，任何递归函数都存在栈溢出的问题。
+
+### Iterable & Iterator
+
+`list`、`dict`、`str`都是`Iterable`，但不是`Iterator`。生成器都是`Iterator`，并且也是`Iterable`的。
+
+> 你可能会问，为什么list、dict、str等数据类型不是Iterator？
+>
+> 这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的，只有在需要返回下一个数据时它才会计算。
+>
+> Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。
+>
+> --摘自廖雪峰老师的Python教程
+
+凡是可作用于`for`循环的对象都是`Iterable`类型；
+
+凡是可作用于`next()`函数的对象都是`Iterator`类型，它们表示一个惰性计算的序列；
+
+集合数据类型如`list`、`dict`、`str`等是`Iterable`但不是`Iterator`，不过可以通过`iter()`函数获得一个`Iterator`对象。
+
+Python的`for`循环本质上就是通过不断调用`next()`函数实现的，例如：
+
+```python
+for x in [1, 2, 3, 4, 5]:
+    pass
+```
+
+实际上完全等价于：
+
+```python
+# 首先获得Iterator对象:
+it = iter([1, 2, 3, 4, 5])
+# 循环:
+while True:
+    try:
+        # 获得下一个值:
+        x = next(it)
+    except StopIteration:
+        # 遇到StopIteration就退出循环
+        break
+```
+
+### 空字符串相当于`Flase`（但不等于`False`）
+
+```python
+# 无输出
+s = ''
+if s:
+    print('SB')
+if s == False:
+    print('SB')
+```
+
+### `filter()`也是惰性序列
+
+
+### `nonlocal`
+
+> The `nonlocal` statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals.
+
+```python
+# 比方说，写一个每次调用返回+1的值的计数器，用闭包函数实现。
+def createCounter():
+    i = 0
+
+    def counter():
+        nonlocal i
+        i += 1
+        return i
+
+    return counter
+
+# 当然也可以用generator就是了。
+```
+
+### 类可以直接绑定变量
+
+```python
+>>> bart = Student('bart', 100)
+>>> lily = Student('lily', 100)
+>>> bart.age = 30
+>>> lily.age
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+AttributeError: 'Student' object has no attribute 'age'
+```
+
+当然各个实列间不会互相影响。
+
+### 鸭子类型
+
+> 一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
+
+这是对于动态语言来说的。（静态语言，例如java，就不能这么干）
+
+```python
+# 只要传入的对象有run()这一方法就没问题。
+def run_twice(animal):
+    animal.run()
+    animal.run()
+```
+
+### 类本身属性不应和实例属性同名
+
+```python
+>>> class Student(object):
+...     name = 'Student'
+...
+>>> s = Student() # 创建实例s
+>>> print(s.name) # 打印name属性，因为实例并没有name属性，所以会继续查找class的name属性
+Student
+>>> print(Student.name) # 打印类的name属性
+Student
+>>> s.name = 'Michael' # 给实例绑定name属性
+>>> print(s.name) # 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性
+Michael
+>>> print(Student.name) # 但是类属性并未消失，用Student.name仍然可以访问
+Student
+>>> del s.name # 如果删除实例的name属性
+>>> print(s.name) # 再次调用s.name，由于实例的name属性没有找到，类的name属性就显示出来了
+Student
+```
+
+### `__slot__`
+
+使用 `__slots__` 要注意, `__slots__` 定义的属性仅对当前类实例起作用, 对继承的子类是不起作用的.
+
+除非在子类中也定义 `__slots__`, 这样, 子类实例允许定义的属性就是自身的 `__slots__` 加上父类的 `__slots__`.

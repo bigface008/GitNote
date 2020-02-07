@@ -38,7 +38,7 @@ TODO: 搞清楚以下问题
 
 ```cpp
 auto it = v.cbegin();
-auto it1 = v.cbegin() + v.size() / 2; /* 就使用情况来看应该是普通地iterator。 */
+auto it1 = v.cbegin() + v.size() / 2; /* 就使用情况来看应该是普通的iterator。 */
 ```
 
 另外，下面的操作貌似是可以的，那......
@@ -47,6 +47,28 @@ auto it1 = v.cbegin() + v.size() / 2; /* 就使用情况来看应该是普通地
 auto it = v.cbegin();
 it++;
 cout << it - v.cbegin() << endl; /* 1 */
+```
+
+### 内置类型变量的初始化
+
+在函数体外部的内建类型变量会默认初始化为0，而函数内部的内建类型变量则会初始化为**未定义**的值。（这不对吧？）
+
+而有的`class`是有默认初始化值的（即使在函数内部），如`std::string `。是否提供默认初始化函数，或者是否强制要求显式初始化，是`class`本身的特性。
+
+### 在作用域内已经定义了一个覆盖全局变量的局部变量时，如何获取全局变量的值？
+
+```cpp
+#include <iostream>
+
+int r = 42;
+
+int main() {
+    std::cout << r << std::endl;   /* 42 */
+    int r = 0;
+    std::cout << r << std::endl;   /* 0 */
+    std::cout << ::r << std::endl; /* 42 */
+    std::cout << r << std::endl;   /* 0 */
+}
 ```
 
 ## Features
