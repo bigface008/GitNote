@@ -447,12 +447,12 @@ AttributeError: 'Student' object has no attribute 'age'
 
 ### 鸭子类型
 
-> 一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
+> 一个对象只要 "看起来像鸭子, 走起路来像鸭子", 那它就可以被看做是鸭子.
 
-这是对于动态语言来说的。（静态语言，例如java，就不能这么干）
+这是对于动态语言来说的.  (静态语言, 例如 java, 就不能这么干)
 
 ```python
-# 只要传入的对象有run()这一方法就没问题。
+# 只要传入的对象有 run() 这一方法就没问题。
 def run_twice(animal):
     animal.run()
     animal.run()
@@ -464,18 +464,18 @@ def run_twice(animal):
 >>> class Student(object):
 ...     name = 'Student'
 ...
->>> s = Student() # 创建实例s
->>> print(s.name) # 打印name属性，因为实例并没有name属性，所以会继续查找class的name属性
+>>> s = Student() # 创建实例 s
+>>> print(s.name) # 打印 name 属性，因为实例并没有 name 属性，所以会继续查找 class 的 name 属性
 Student
->>> print(Student.name) # 打印类的name属性
+>>> print(Student.name) # 打印类的 name 属性
 Student
->>> s.name = 'Michael' # 给实例绑定name属性
->>> print(s.name) # 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性
+>>> s.name = 'Michael' # 给实例绑定 name 属性
+>>> print(s.name) # 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的 name 属性
 Michael
->>> print(Student.name) # 但是类属性并未消失，用Student.name仍然可以访问
+>>> print(Student.name) # 但是类属性并未消失，用 Student.name 仍然可以访问
 Student
->>> del s.name # 如果删除实例的name属性
->>> print(s.name) # 再次调用s.name，由于实例的name属性没有找到，类的name属性就显示出来了
+>>> del s.name # 如果删除实例的 name 属性
+>>> print(s.name) # 再次调用 s.name, 由于实例的 name 属性没有找到，类的 name 属性就显示出来了
 Student
 ```
 
@@ -484,3 +484,190 @@ Student
 使用 `__slots__` 要注意, `__slots__` 定义的属性仅对当前类实例起作用, 对继承的子类是不起作用的.
 
 除非在子类中也定义 `__slots__`, 这样, 子类实例允许定义的属性就是自身的 `__slots__` 加上父类的 `__slots__`.
+
+### `__getattr__`
+
+注意，只有在没有找到属性的情况下，才调用 `__getattr__`，已有的属性，比如name，不会在 `__getattr__` 中查找.
+
+### `repr()` 和反引号
+
+Python 3.0 目前已经不适用反引号了, 你得坚持用 `repr()`.
+
+> `repr()` 的作用是以合法的 Python 表达式的形式来表示值.
+
+### 原始字符串末尾不可以是反斜杠
+
+就是说 `r'Hello, world!\'` 是不行的.
+
+### Python 2 和 Python 3 中的 `input()`
+
+在 Python 3 中, `input()` 的行为如下。
+
+```python
+>>> x = input('x: ')
+x: 12
+>>> x
+'12'
+```
+
+而在 Python 2 中, 相同的功能是 `raw_input()` 来实现的, 它会认为输入的值是单纯的字符串.
+
+Python 2 中的 `input()` 表示的则是计算了这个字符串后得到的值. 
+
+```python
+# Python 2
+>>> x = input('x: ')
+x: 12
+>>> x
+12
+```
+
+也就是说，它认为输入的应当是合法的 Python 表达式, 如果输入了普通的字符串, 比如
+
+```python
+>>> input('sth: ')
+sth: Ted
+# 报错信息.
+```
+
+就会报错.
+
+下面是在 [stackover flow](https://stackoverflow.com/questions/954834/how-do-i-use-raw-input-in-python-3) 上找到的信息.
+
+> There was originally a function input() which acted something like the current eval(input()). It was a leftover from when Python was less security conscious.
+
+### `sorted()` & `sort()`
+
+`sorted()` 函数不能改变输入的列表的值 (也可以输入元组) .
+
+```python
+>>> a = [1, 3, 2]
+>>> sorted(a)
+[1, 2, 3]
+>>> a
+[1, 3, 2]
+```
+
+另外, `sorted()` 返回值必然为列表.
+
+```python
+>>> s = 'Python'
+>>> sorted(s)
+['P', 'h', 'n', 'o', 't', 'y']
+```
+
+`sort()` 方法会在原位改变输入列表的值.
+
+```python
+>>> a = [1, 3, 2]
+>>> a.sort() # 返回值为 None.
+>>> a
+[1, 2, 3]
+```
+
+对于元组也是一样的.
+
+### 分片赋值
+
+总之是个很强的特性.
+
+```python
+>>> name = list('Perl')
+>>> name
+['P', 'e', 'r', 'l']
+>>> name[2:] = list('ar')
+>>> name
+['P', 'e', 'a', 'r']
+>>> name[2:3] = ['e']
+>>> name
+['P', 'e', 'e', 'r']
+>>> name[1:] = list('ython')
+>>> name
+['P', 'y', 't', 'h', 'o', 'n']
+```
+
+### `extend()` 方法
+
+```python
+>>> a = [1, 2, 3]
+>>> b = [4, 5, 6]
+>>> a.extend(b)
+>>> a
+[1, 2, 3, 4, 5, 6]
+```
+
+自然地, 用 `a = a + b` 的方式也能达到相同的效果, 但是这样的连接操作效率会比 `extend()` 要低.
+
+### 先进先出? 用 `collection` 中的 `deque`.
+
+pass
+
+### Python 中的字符串是不可变的
+
+也就是说不能分片赋值.
+
+### `string.letters`
+
+Python 3.0 中, `string.letters` 相关的东西都被移除. 需要的话应当使用 `string.ascii_letters` 代替.
+
+### `join()` & `split()`
+
+这两个东西的对象, 参数的顺序是反过来的.
+
+```python
+>>> path = ['usr', 'bin', 'env']
+>>> '/'.join(path)
+'usr/bin/env'
+>>> path
+['usr', 'bin', 'env']
+>>> path = 'usr/bin/env'
+>>> path.split('/')
+['usr', 'bin', 'env']
+```
+
+另外, 他们都不会改变对象的值. (Python 中的字符串是不可改变的)
+
+### `translate()` & `str.maketrans()`
+
+Python 3 里这两东西和 Python 2 里有很大区别.
+
+首先 Python 2 里是有 `maketrans()` 的:
+
+```python
+from string import maketrans
+```
+
+但是 Python 3 里需要用 `str.maketrans`, `bytearray.maketrans`, `bytes.maketrans`.
+
+其次, Python 2 里 `translate()` 有第二个参数, 表示要在调用的字符串中删除所有该参数, Python 3 里面的 `translate()` 则只有一个参数.
+
+要实现将 `'ab ab ab'` 中的 'a', 'b' 分别替换成 '1', '2', 并且删除所有空格, 在 Python 3 中需要这么操作:
+
+```python
+# 可以理解为把 'ab' 替换为 '12', 把 ' ' 替换为 None.
+>>> table = str.maketrans('ab', '12', ' ')
+>>> 'ab ab ab ab'.translate(table)
+'12121212'
+```
+
+### 字典, 列表, 深浅复制
+
+首先, 对于字典, 深浅复制的区别在于
+
+```python
+x = {'username': 'admin', 'machines': ['foo', 'bar', 'baz']}
+
+# 深复制
+y = deepcopy(x) # 需要 from copy import deepcopy
+y['username'] = 'mlh'
+print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'bar', 'baz']} y: {'username': 'mlh', 'machines': ['foo', 'bar', 'baz']}
+y['machines'].remove('bar')
+print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'bar', 'baz']} y: {'username': 'mlh', 'machines': ['foo', 'baz']}
+
+# 浅复制
+y = x.copy()
+y['username'] = 'mlh'
+print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'bar', 'baz']} y: {'username': 'mlh', 'machines': ['foo', 'bar', 'baz']}
+y['machines'].remove('bar')
+print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'baz']} y: {'username': 'mlh', 'machines': ['foo', 'baz']}
+```
