@@ -652,13 +652,14 @@ from string import maketrans
 
 ### 字典, 列表, 深浅复制
 
-首先, 对于字典, 深浅复制的区别在于
+首先, 对于字典, 深浅复制的区别在于, 浅复制只会复制到第一层元素指向的位置, 而深复制则会复制到第一层元素指向的位置上放的值。
 
 ```python
 x = {'username': 'admin', 'machines': ['foo', 'bar', 'baz']}
 
 # 深复制
-y = deepcopy(x) # 需要 from copy import deepcopy
+from copy import deepcopy
+y = deepcopy(x)
 y['username'] = 'mlh'
 print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'bar', 'baz']} y: {'username': 'mlh', 'machines': ['foo', 'bar', 'baz']}
 y['machines'].remove('bar')
@@ -671,3 +672,74 @@ print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'bar
 y['machines'].remove('bar')
 print('x:', x, 'y:', y)      # x: {'username': 'admin', 'machines': ['foo', 'baz']} y: {'username': 'mlh', 'machines': ['foo', 'baz']}
 ```
+
+### `items()`, `iteritems()`, `keys()`, `iterkeys()`, `values()`
+
+Python 2 中存在的 `dict` 的方法, 用来返回键值对的列表的 `items()` 方法和返回键值对列表迭代器的 `iteritems()` 方法, 在 Python 3 中都没了.
+
+Python 3 中的 `items()` 返回的是一个可以用 `for` 进行迭代的不明物体. (貌似是叫 `dict_items` 对象)
+
+同样的, `keys()` 方法的返回值也从键的列表, 变成了 `dict_keys` 对象. `iterkeys()` 方法也没了. `values()` 返回的也是个 `dict_values` 对象.
+
+```python
+>>> d = {'title': 'Python Web Site', 'url': 'http://www.python.org', 'spam': 0}
+>>> print(d.items())
+dict_items([('title', 'Python Web Site'), ('url', 'http://www.python.org'), ('spam', 0)])
+>>> print(d.keys())
+dict_keys(dict_keys(['title', 'url', 'spam']))
+```
+
+### `setdefault()` 一个看上去脱裤子放屁实则有点东西的方法
+
+字典中不存在第一参数的键的时候, 加入相应键值对.
+
+字典中存在第一参数的键的时候, 不改变对应值并且返回字典中对应值.
+
+```python
+>>> d = {}
+>>> d.setdefault('name', 'N/A')
+'N/A'
+>>> d
+{'name': 'N/A'}
+>>> d['name'] = 'Ted'
+>>> d
+{'name': 'Ted'}
+>>> d.setdefault('name', 'N/A')
+'Ted'
+>>> d
+{'name': 'Ted'}
+```
+
+所以, 这东西咋用呢?
+
+举个例子, 找出首字母相同的男生, 女生的名字组合.
+
+```python
+# 普通方法
+>>> girls = ['Alice', 'Bernice', 'Clarice']
+>>> boys = ['Chris', 'Arnold', 'Bob']
+>>> [b + ' ' + g for b in boys for g in girls if b[0] == g[0]]
+
+# 上面的方法要尝试每一种选择, 效率较低. Python 有很多方法解决这个问题, 比如
+letterGirls = {}
+for girl in girls:
+    letterGirls.setdefault(girl[0], []).append(girl)
+print([b + ' ' + g for b in boys for g in letterGirls[b[0]]])
+```
+
+### 垃圾回收
+
+Python 中, 你无法删除一个值, 你只能删除它对应的名称. 删除值的工作是由垃圾回收模块负责的.
+
+```python
+>>> x = ['Hello', 'world']
+>>> y = x
+>>> y[1] = 'Python
+>>> x
+['Hello', 'Python']
+>>> del x
+>>> y
+['Hello', 'Python']
+```
+
+删除的只是名称, 而不是列表本身.
