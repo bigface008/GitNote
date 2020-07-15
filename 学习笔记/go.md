@@ -518,4 +518,5 @@ go install golang.org/x/tools/cmd/gopls
 
 ```shell
 cd $env:GOPATH
+go get golang.org/x/tools/gopls@latest
 ```
