@@ -757,4 +757,45 @@ Python 中, 你无法删除一个值, 你只能删除它对应的名称. 删除�
 
 多重继承据说是个大坑, 尽量少用为妙. 另外, 如果多个超类以不同的方式实现了同一个方法 (即有多个同名方法), 必须在 `class` 语句中小心排列这些超类, 因为位于前面的类的方法将覆盖位于后面的类的方法.
 
+### 格式化字符串
 
+总之，python的格式化字符串有很多骚操作，当你需要这种操作的时候，不妨看看下面这个例子。
+
+```python
+# 输入参数为 35
+width = int(input('Please enter width: '))
+
+price_width = 10
+item_width = width - price_width
+
+header_fmt = f'{{:{item_width}}}{{:>{price_width}}}'
+fmt = f'{{:{item_width}}}{{:>{price_width}.2f}}'
+print(header_fmt)
+print(fmt)
+
+print('=' * width)
+print(header_fmt.format('Item', 'Price'))
+print('-' * width)
+print(fmt.format('Apples', 0.4))
+print(fmt.format('Pears', 0.5))
+print(fmt.format('Cantaloupes', 1.92))
+print(fmt.format('Dried Apricots (16 oz.)', 8))
+print(fmt.format('Prunes (4 lbs.)', 12))
+print('=' * width)
+```
+
+对应输出
+
+```
+{:25}{:>10}
+{:25}{:>10.2f}
+===================================
+Item                          Price
+-----------------------------------
+Apples                         0.40
+Pears                          0.50
+Cantaloupes                    1.92
+Dried Apricots (16 oz.)        8.00
+Prunes (4 lbs.)               12.00
+===================================
+```

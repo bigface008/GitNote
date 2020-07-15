@@ -513,3 +513,9 @@ cd $env:GOPATH\src\golang.org\x\tools
 git pull
 go install golang.org/x/tools/cmd/gopls
 ```
+
+更新：目前使用了代理来下载 Go 的组件，因此可以直接使用如下命令来更新 gopls。
+
+```shell
+cd $env:GOPATH
+```
