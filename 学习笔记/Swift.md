@@ -239,4 +239,25 @@ if #available(iOS 10, *) {
 }
 ```
 
+### UITextView 去除内边距
+
+```swift
+addressView.textContainer.lineFragmentPadding = 0 // 左右边距
+addressView.textContainerInset = UIEdgeInsets.zero // 上下边距
+```
+
+### 类用 rx.observe 观察自己的属性时，要避免循环引用
+
+![img](../imgs/2021.1.14.0000.png)
+
+使用 rx.observe 时，需要注意: 如果一个类观察自己的属性，使用 rx.observe 将会产生循环引用。因为默认会retain被观察者. 可以在observe时retainSelf 指定为false。
+
+![img](../imgs/2021.1.14.0001.png)
+
 ## 功能集锦
+
+## 问题集锦
+
+1. statusbar、横屏 背后逻辑调查
+2. rxswift 数组内对象 值 观察
+3. 最基本的设计：vc和vm之间如何互相操作？
